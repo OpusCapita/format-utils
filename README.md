@@ -1,2 +1,3 @@
-# format-utils
+### format-utils
+
 Formatting functions in JS
