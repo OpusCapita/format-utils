@@ -12,7 +12,8 @@ class FormatUtils {
 
   /**
    * Get a number of decimal digits for a currency.
-   * Input: currency code, react-intl formatNumber function (optional), locale (optional).
+   * Input: currency code :: string, react-intl formatNumber :: function (optional),
+   * locale :: string (optional).
    * Output: decimals :: number.
    * Example of input: 'EUR'. Example of output: 2.
    * Example of input: 'JPY'. Example of output: 0.
@@ -32,7 +33,7 @@ class FormatUtils {
 
   /**
    * Get a number of decimal digits for a FX rate.
-   * Input: rate.
+   * Input: rate :: [number, string].
    * Output: decimals :: number.
    * Example of input: 1.11. Example of output: 6.
    * Example of input: 1.12345678. Example of output: 8.
@@ -46,9 +47,9 @@ class FormatUtils {
   }
 
   /**
-   * Get local date and time from ISO 8601 timestamp. It's cross-browser compatible (IE especially!).
-    * Input: UTC timestamp.
-    * Output: timestamp.
+   * Get local date and time from ISO 8601 timestamp. It's cross-browser (IE especially!).
+    * Input: UTC timestamp :: string.
+    * Output: timestamp :: string.
     */
   getLocalDateTime = (timestamp) => {
     const isoTimestamp = (timestamp !== null && timestamp.slice(-1) !== 'Z') ?
@@ -60,7 +61,8 @@ class FormatUtils {
 
   /**
    * Format amount according to its currency.
-   * Input: amount, currency code, react-intl formatNumber function (optional), locale (optional).
+   * Input: amount :: [number, string], currency code :: string,
+   * react-intl formatNumber :: function (optional), locale :: string (optional).
    * Output: amount :: string.
    * Example of input: 1, 'EUR'. Example of output: '1.00'.
    * Example of input: 1.123, 'JPY'. Example of output: '1'.
@@ -79,7 +81,7 @@ class FormatUtils {
 
   /**
    * Format an input to a float with fixed number of decimals.
-   * Input: value to format, number of decimals.
+   * Input: value to format :: [number, string], decimals :: number.
    * Output: formatted value :: string.
    * Example of input: '23 000.1abc', '2'. Example of output: '23000.10'.
    */
@@ -90,9 +92,9 @@ class FormatUtils {
   }
 
   /**
-   * Format ISO timestamp to a chosen format.
-   * Input: ISO timestamp, date format string.
-   * Output: localized date :: string.
+   * Format date to a chosen format.
+   * Input: date :: string, date format :: string.
+   * Output: date :: string.
    * Example of input: '2017-01-01T00:00:00.000Z', 'DD.MM.YYYY'. Example of output: '01.01.2017'.
    */
   formatDate = (value, dateFormat) => {
@@ -110,8 +112,8 @@ class FormatUtils {
 
   /**
    * Format localized date string to ISO timestamp.
-   * Input: localized date string, date format (optional), sign of strict date format (optional),
-   * default value (optional), default date format (optional).
+   * Input: date :: string, date format :: string (optional), sign of strict date format :: boolean (optional),
+   * default value :: string (optional), default date format :: string (optional).
    * Output: ISO timestamp :: string.
    * Example of input: '01.01', 'DD.MM.YYYY'. Example of output: '2017-01-01T00:00:00.000Z'.
    */
@@ -131,6 +133,13 @@ class FormatUtils {
     return defaultValue;
   };
   
+  /**
+   * Parse date string to ISO string or a new format.
+   * Input: date :: string, date format :: string, new date format :: string (optional).
+   * Output: date :: string.
+   * Example of input: '01.01.2017', 'DD.MM.YYYY'. Example of output: '2017-01-01T00:00:00.000Z'.
+   * Example of input: '01.01.2017', 'DD.MM.YYYY', 'YYYY-MM-DD'. Example of output: '2017-01-01'.
+   */
   parseDate = (value, dateFormat, newFormat = null) => {
     if (moment.utc(value, dateFormat).isValid()) {
       return newFormat === null ? moment.utc(value, dateFormat).toISOString() :
@@ -142,6 +151,12 @@ class FormatUtils {
     return null;
   }
 
+  /**
+   * Parse float.
+   * Input: value :: [number, string], decimal separator :: string.
+   * Output: value :: string.
+   * Example of input: '1,1', ','. Example of output: '1.1'.
+   */
   parseFloat = (value, decimalSeparator) => {
     if (!value || String(value).length === 0) {
       return value;
@@ -149,6 +164,12 @@ class FormatUtils {
     return String(value).replace(decimalSeparator, '.');
   }
 
+  /**
+   * Parse number.
+   * Input: value :: [number, string].
+   * Output: value :: string.
+   * Example of input: '1ab'. Example of output: '1'.
+   */
   parseNumber = value => (String(value).replace(/[^\d-]/g, '') || '');
 
 }
