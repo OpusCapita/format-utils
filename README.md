@@ -24,7 +24,20 @@ Formatting functions in JS
 npm install --save @opuscapita/format-utils
 ```
 
+### Development
+
+* Run `npm install` to get the project's dependencies
+* Run `npm run build` to produce minified version of the library
+* Run `npm run dev` to produce development version of the library.
+* Run `npm run test` to run tests
+
+#### Development workflow
+
+* Run `npm run hot`
+* Open `http://localhost:5555/`
+
 #### Contributing
+
 * Make a new branch for the changes
 * Update `CHANGELOG.md` file
 * Commit changes (not `lib`)
@@ -32,10 +45,12 @@ npm install --save @opuscapita/format-utils
 * Complete your pull request and remove your development branch
 
 #### Creating a new release
+
 * Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
 * Run `npm publish`
 
 ### Code example
+
 ```jsx
 import React from 'react';
 import { FormatUtils } from '../../src/index';
