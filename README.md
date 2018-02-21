@@ -1,9 +1,26 @@
 # format-utils
 
+### Description
 Formatting functions in JS
 
-### API
+### Installation
+```
+npm install --save @opuscapita/format-utils
+```
 
+### Demo
+View the [DEMO](https://opuscapita.github.io/format-utils)
+
+### Builds
+#### UMD
+The default build with compiled styles in the .js file. Also minified version available in the lib/umd directory.
+#### CommonJS/ES Module
+You need to configure your module loader to use `cjs` or `es` fields of the package.json to use these module types.
+Also you need to configure sass loader, since all the styles are in sass format.
+* With webpack use [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields) to configure the module type.
+* Add [SASS loader](https://github.com/webpack-contrib/sass-loader) to support importing of SASS styles.
+
+### API
 | Function name            | Description                                     | Input                                   | Output             | 
 | ------------------------ | ----------------------------------------------- | ----------------------------------------| ------------------ |
 | getCurrencyDecimals      | Get a number of decimal digits for a currency   | currency code :: string                 | decimals :: number |
@@ -18,39 +35,7 @@ Formatting functions in JS
 | parseFloat               | Parse float                                     | value :: [number, string], decimal separator :: string | value :: string |
 | parseNumber              | Parse number                                    | value :: [number, string]               | value :: string    |
 
-### Installation
-
-```
-npm install --save @opuscapita/format-utils
-```
-
-### Development
-
-* Run `npm install` to get the project's dependencies
-* Run `npm run build` to produce minified version of the library
-* Run `npm run dev` to produce development version of the library.
-* Run `npm run test` to run tests
-
-#### Development workflow
-
-* Run `npm run hot`
-* Open `http://localhost:5555/`
-
-#### Contributing
-
-* Make a new branch for the changes
-* Update `CHANGELOG.md` file
-* Commit changes (not `lib`)
-* Make a pull request
-* Complete your pull request and remove your development branch
-
-#### Creating a new release
-
-* Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
-* Run `npm publish`
-
 ### Code example
-
 ```jsx
 import React from 'react';
 import { FormatUtils } from '../../src/index';
