@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
-  "description": "OpusCapita formatting utilities",
+  "description": "OpusCapita JS formatting utilities",
   "main": "lib/format-utils.js",
   "scripts": {
     "build": "rimraf lib && cross-env NODE_ENV=production BUILD_ENV=es babel ./src -d lib --copy-files",

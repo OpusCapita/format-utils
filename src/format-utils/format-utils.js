@@ -1,29 +1,26 @@
 import moment from 'moment';
 
+import {
+  FXRATE_DECIMALS,
+  SKIPPED_DATE_FORMAT,
+} from './format-utils.constants';
+
 class FormatUtils {
-
-  CURRENCY_OPTIONS = { style: 'currency', currencyDisplay: 'code', useGrouping: false };
-  DEFAULT_LOCALE = 'en-GB';
-  FXRATE_DECIMALS = 6;
-  SKIPPED_DATE_FORMAT = 'YYYY-MM';
-  
-  intlFormatNumber = (value, options, locale) =>
-    new Intl.NumberFormat(locale, options).format(value);
-
   /**
    * Get a number of decimal digits for a currency.
-   * Input: currency code :: string, react-intl formatNumber :: function (optional),
-   * locale :: string (optional).
+   * Input: currency code :: string.
    * Output: decimals :: number.
    * Example of input: 'EUR'. Example of output: 2.
    * Example of input: 'JPY'. Example of output: 0.
    */
-  getCurrencyDecimals = (currency, formatNumber = null, locale = DEFAULT_LOCALE) => {
-    const numberOptions = { ...CURRENCY_OPTIONS, currency };
-    const numberTest = 1.111111;
-    let test = formatNumber !== null ? formatNumber(numberTest, numberOptions) :
-      intlFormatNumber(numberTest, numberOptions, locale);
-    test = test.replace(/[^\d.,]/g, '');
+  getCurrencyDecimals = (currency) => {
+    const numberOptions = {
+      currency,
+      style: 'currency',
+      currencyDisplay: 'code',
+      useGrouping: false,
+    };
+    const test = new Intl.NumberFormat('en-GB', numberOptions).format(1.111111).replace(/[^\d.,]/g, '');
     const foundSeparator = test.search(/[.,]/g);
     if (foundSeparator === -1) {
       return 0;
@@ -49,7 +46,7 @@ class FormatUtils {
   /**
    * Get local date and time from ISO 8601 timestamp. It's cross-browser (IE especially!).
     * Input: UTC timestamp :: string.
-    * Output: timestamp :: string.
+    * Output: timestamp :: date.
     */
   getLocalDateTime = (timestamp) => {
     const isoTimestamp = (timestamp !== null && timestamp.slice(-1) !== 'Z') ?
@@ -61,14 +58,13 @@ class FormatUtils {
 
   /**
    * Format amount according to its currency.
-   * Input: amount :: [number, string], currency code :: string,
-   * react-intl formatNumber :: function (optional), locale :: string (optional).
+   * Input: amount :: [number, string], currency code :: string.
    * Output: amount :: string.
    * Example of input: 1, 'EUR'. Example of output: '1.00'.
    * Example of input: 1.123, 'JPY'. Example of output: '1'.
    */
-  formatCurrencyAmount = (value, currency, formatNumber = null, locale = DEFAULT_LOCALE) =>
-    Number(value).toFixed(getCurrencyDecimals(currency, formatNumber, locale));
+  formatCurrencyAmount = (value, currency) =>
+    Number(value).toFixed(this.getCurrencyDecimals(currency));
 
   /**
    * Format FX rate.
@@ -77,7 +73,7 @@ class FormatUtils {
    * Example of input: 1.11. Example of output: '1.110000'.
    * Example of input: 1.12345678. Example of output: '1.12345678'.
    */
-  formatFXRate = (value) => Number(value).toFixed(getFXRateDecimals(value));
+  formatFXRate = value => Number(value).toFixed(this.getFXRateDecimals(value));
 
   /**
    * Format an input to a float with fixed number of decimals.
@@ -86,6 +82,7 @@ class FormatUtils {
    * Example of input: '23 000.1abc', '2'. Example of output: '23000.10'.
    */
   formatFloatToFixedDecimals = (value, decimals) => {
+    /* eslint-disable no-restricted-globals */
     let floatValue = String(value).replace(/[^\d.,-]/g, '').replace(',', '.');
     floatValue = isNaN(Number(floatValue)) ? 0 : Number(floatValue);
     return floatValue.toFixed(decimals);
@@ -112,8 +109,9 @@ class FormatUtils {
 
   /**
    * Format localized date string to ISO timestamp.
-   * Input: date :: string, date format :: string (optional), sign of strict date format :: boolean (optional),
-   * default value :: string (optional), default date format :: string (optional).
+   * Input: date :: string, date format :: string (optional), sign of strict date format ::
+   * boolean (optional), default value :: string (optional), default date format ::
+   * string (optional).
    * Output: ISO timestamp :: string.
    * Example of input: '01.01', 'DD.MM.YYYY'. Example of output: '2017-01-01T00:00:00.000Z'.
    */
@@ -132,7 +130,7 @@ class FormatUtils {
     }
     return defaultValue;
   };
-  
+
   /**
    * Parse date string to ISO string or a new format.
    * Input: date :: string, date format :: string, new date format :: string (optional).
@@ -171,7 +169,6 @@ class FormatUtils {
    * Example of input: '1ab'. Example of output: '1'.
    */
   parseNumber = value => (String(value).replace(/[^\d-]/g, '') || '');
-
 }
 
 export default new FormatUtils();

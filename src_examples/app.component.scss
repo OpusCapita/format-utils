@@ -1,33 +1,28 @@
-@import 'styles/app',
-        'styles/mixins',
-        'styles/bootstrap_v3_custom',
-        'styles/bootstrap_v3_overrides',
-        'styles/bootstrap_v3_without_icons',
-        'styles/buttons',
-        'styles/colors',
-        'styles/icons',
-        'styles/inputs',
-        'styles/variables';
+//Margin or padding of a content
+$oc-space-content: 1rem;
 
-@import './flex';
+/* Backgrounds */
+$oc-color-site-background: #D3DADE;
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
 
-.oc-margin-bottom {
-    margin-bottom: 1rem;
+.oc-content {
+    padding: $oc-space-content;
+    border: $oc-color-site-background $oc-space-content solid;
+    min-height: 100%;
+    background-color: $oc-color-site-background;
+
+    li {
+      padding-bottom: 10px;  
+    }
 }
 
 #oc-examples {
   height: 100%;
-}
-
-.oc-link-active {
-    color: $oc-color-primary-orange !important;
-}
-
-.oc-burger-orange {
-    background-color: $oc-color-primary-orange;
-
-    .oc-icon-burger {
-        fill: $oc-color-white;
-    }
 }

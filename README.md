@@ -6,10 +6,10 @@ Formatting functions in JS
 
 | Function name            | Description                                     | Input                                   | Output             | 
 | ------------------------ | ----------------------------------------------- | ----------------------------------------| ------------------ |
-| getCurrencyDecimals      | Get a number of decimal digits for a currency   | currency code :: string, formatNumber :: function (optional), locale :: string (optional) | decimals :: number |
+| getCurrencyDecimals      | Get a number of decimal digits for a currency   | currency code :: string                 | decimals :: number |
 | getFXRateDecimals        | Get a number of decimal digits for a FX rate    | FX rate :: [number, string]             | decimals :: number |
-| getLocalDateTime         | Get local date and time from ISO 8601 timestamp | UTC timestamp :: string                 | timestamp :: string |
-| formatCurrencyAmount     | Format amount according to its currency         | amount :: [number, string], currency code :: string, formatNumber :: function (optional), locale :: string (optional) | amount :: string |
+| getLocalDateTime         | Get local date and time from ISO 8601 timestamp | UTC timestamp :: string                 | timestamp :: date  |
+| formatCurrencyAmount     | Format amount according to its currency         | amount :: [number, string], currency code :: string | amount :: string |
 | formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
 | formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
 | formatDate               | Format date to a chosen format                  | date :: string, date format :: string   | date :: string     |
@@ -34,3 +34,17 @@ npm install --save @opuscapita/format-utils
 #### Creating a new release
 * Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
 * Run `npm publish`
+
+### Code example
+```jsx
+import React from 'react';
+import { FormatUtils } from '../../src/index';
+
+export default function FormatUtilsExamples() {
+  return (
+    <div>
+      getCurrencyDecimals(&apos;EUR&apos;) = {FormatUtils.getCurrencyDecimals('EUR')}
+    </div>
+  );
+}    
+```
