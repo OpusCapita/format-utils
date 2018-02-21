@@ -5,7 +5,7 @@
   "private": false,
   "license": "MIT",
   "description": "OpusCapita JS formatting utilities",
-  "main": "lib/umd/index.js",
+  "main": "lib/umd/format-utils.js",
   "cjs": "lib/cjs/index.js",
   "es": "lib/es/index.js",
   "scripts": {
