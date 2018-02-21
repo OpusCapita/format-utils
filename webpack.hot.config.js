@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const path = require('path');
 const merge = require('webpack-merge');
 const devConfig = require('./webpack.config');
 
@@ -8,6 +9,13 @@ const hotConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new WriteFilePlugin({ log: false }),
   ],
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+      'react-redux': path.resolve('./node_modules/react-redux'),
+    },
+  },
   devServer: {
     noInfo: true,
     quiet: false,
@@ -17,9 +25,11 @@ const hotConfig = {
     hotOnly: true,
     inline: true,
     stats: { colors: true },
+    // host: '192.168.0.101', // make dev server available on specific IP
   },
 };
 
 const mergedConfig = merge(devConfig, hotConfig);
+mergedConfig.entry.unshift('react-hot-loader/patch');
 
 module.exports = mergedConfig;

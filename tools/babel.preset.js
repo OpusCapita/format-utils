@@ -7,10 +7,19 @@ const plugins = [
   'transform-decorators-legacy',
 ];
 
+if (NODE_ENV === 'production') {
+  plugins.push('transform-react-remove-prop-types');
+}
+
+if (BUILD_ENV === 'hot') {
+  plugins.push('react-hot-loader/babel');
+}
+
 module.exports = {
   presets: [
     ['env', presetOptions],
     'stage-1',
+    'react',
   ],
   plugins,
 };

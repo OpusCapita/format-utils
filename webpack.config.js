@@ -74,7 +74,7 @@ const baseConfig = {
       },
       {
         test: /\.svg$/,
-        use: ['babel-loader'],
+        use: ['babel-loader', 'react-svg-loader'],
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
