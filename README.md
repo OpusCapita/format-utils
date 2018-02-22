@@ -27,10 +27,10 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | getFXRateDecimals        | Get a number of decimal digits for a FX rate    | FX rate :: [number, string]             | decimals :: number |
 | getLocalDateTime         | Get local date and time from ISO 8601 timestamp | UTC timestamp :: string                 | timestamp :: date  |
 | formatCurrencyAmount     | Format amount according to its currency         | amount :: [number, string], currency code :: string | amount :: string |
-| formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
-| formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
 | formatDate               | Format date to a chosen format                  | date :: string, date format :: string   | date :: string     |
 | formatDateToISO          | Format localized date string to ISO timestamp   | date :: string, date format :: string (optional), sign of strict date format :: boolean (optional), default value :: string (optional), default date format :: string (optional) | ISO date :: string |
+| formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
+| formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
 
 ### Code example
 ```jsx

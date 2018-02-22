@@ -19,16 +19,16 @@ export default function FormatUtilsExamples() {
           formatCurrencyAmount(1, &apos;EUR&apos;) = {FormatUtils.formatCurrencyAmount(1, 'EUR')}
         </li>
         <li>
-          formatFXRate(1.11) = {FormatUtils.formatFXRate(1.11)}
+          formatDate(&apos;2017-01-01T00:00:00.000Z&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')}
+        </li>
+        <li>
+          formatDateToISO(&apos;01.01&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')}
         </li>
         <li>
           formatFloatToFixedDecimals(1.11, 3) = {FormatUtils.formatFloatToFixedDecimals(1.11, 3)}
         </li>
         <li>
-          formatDate(&apos;2017-01-01T00:00:00.000Z&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')}
-        </li>
-        <li>
-          formatDateToISO(&apos;01.01&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')}
+          formatFXRate(1.11) = {FormatUtils.formatFXRate(1.11)}
         </li>
       </ul>
     </div>

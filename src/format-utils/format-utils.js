@@ -67,28 +67,6 @@ class FormatUtils {
     Number(value).toFixed(this.getCurrencyDecimals(currency));
 
   /**
-   * Format FX rate.
-   * Input: rate.
-   * Output: rate :: string.
-   * Example of input: 1.11. Example of output: '1.110000'.
-   * Example of input: 1.12345678. Example of output: '1.12345678'.
-   */
-  formatFXRate = value => Number(value).toFixed(this.getFXRateDecimals(value));
-
-  /**
-   * Format an input to a float with fixed number of decimals.
-   * Input: value to format :: [number, string], decimals :: number.
-   * Output: formatted value :: string.
-   * Example of input: '23 000.1abc', '2'. Example of output: '23000.10'.
-   */
-  formatFloatToFixedDecimals = (value, decimals) => {
-    /* eslint-disable no-restricted-globals */
-    let floatValue = String(value).replace(/[^\d.,-]/g, '').replace(',', '.');
-    floatValue = isNaN(Number(floatValue)) ? 0 : Number(floatValue);
-    return floatValue.toFixed(decimals);
-  }
-
-  /**
    * Format date to a chosen format.
    * Input: date :: string, date format :: string.
    * Output: date :: string.
@@ -130,6 +108,28 @@ class FormatUtils {
     }
     return defaultValue;
   };
+
+  /**
+   * Format an input to a float with fixed number of decimals.
+   * Input: value to format :: [number, string], decimals :: number.
+   * Output: formatted value :: string.
+   * Example of input: '23 000.1abc', '2'. Example of output: '23000.10'.
+   */
+  formatFloatToFixedDecimals = (value, decimals) => {
+    /* eslint-disable no-restricted-globals */
+    let floatValue = String(value).replace(/[^\d.,-]/g, '').replace(',', '.');
+    floatValue = isNaN(Number(floatValue)) ? 0 : Number(floatValue);
+    return floatValue.toFixed(decimals);
+  }
+
+  /**
+   * Format FX rate.
+   * Input: rate.
+   * Output: rate :: string.
+   * Example of input: 1.11. Example of output: '1.110000'.
+   * Example of input: 1.12345678. Example of output: '1.12345678'.
+   */
+  formatFXRate = value => Number(value).toFixed(this.getFXRateDecimals(value));
 }
 
 export default new FormatUtils();
