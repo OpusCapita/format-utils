@@ -30,15 +30,6 @@ export default function FormatUtilsExamples() {
         <li>
           formatDateToISO(&apos;01.01&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')}
         </li>
-        <li>
-          parseDate(&apos;01.01.2017&apos;, &apos;DD.MM.YYYY&apos;, &apos;YYYY-MM-DD&apos;) = {FormatUtils.parseDate('01.01.2017', 'DD.MM.YYYY', 'YYYY-MM-DD')}
-        </li>
-        <li>
-          parseFloat(&apos;1,1&apos;, &apos;,&apos;) = {FormatUtils.parseFloat('1,1', ',')}
-        </li>
-        <li>
-          parseNumber(&apos;1ab&apos;) = {FormatUtils.parseNumber('1ab')}
-        </li>
       </ul>
     </div>
   );

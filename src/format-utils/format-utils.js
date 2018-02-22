@@ -130,45 +130,6 @@ class FormatUtils {
     }
     return defaultValue;
   };
-
-  /**
-   * Parse date string to ISO string or a new format.
-   * Input: date :: string, date format :: string, new date format :: string (optional).
-   * Output: date :: string.
-   * Example of input: '01.01.2017', 'DD.MM.YYYY'. Example of output: '2017-01-01T00:00:00.000Z'.
-   * Example of input: '01.01.2017', 'DD.MM.YYYY', 'YYYY-MM-DD'. Example of output: '2017-01-01'.
-   */
-  parseDate = (value, dateFormat, newFormat = null) => {
-    if (moment.utc(value, dateFormat).isValid()) {
-      return newFormat === null ? moment.utc(value, dateFormat).toISOString() :
-        moment.utc(value, dateFormat).format(newFormat);
-    } else if (moment.utc(value, moment.ISO_8601).isValid()) {
-      return newFormat === null ? moment.utc(value, moment.ISO_8601).toISOString() :
-        moment.utc(value, moment.ISO_8601).format(newFormat);
-    }
-    return null;
-  }
-
-  /**
-   * Parse float.
-   * Input: value :: [number, string], decimal separator :: string.
-   * Output: value :: string.
-   * Example of input: '1,1', ','. Example of output: '1.1'.
-   */
-  parseFloat = (value, decimalSeparator) => {
-    if (!value || String(value).length === 0) {
-      return value;
-    }
-    return String(value).replace(decimalSeparator, '.');
-  }
-
-  /**
-   * Parse number.
-   * Input: value :: [number, string].
-   * Output: value :: string.
-   * Example of input: '1ab'. Example of output: '1'.
-   */
-  parseNumber = value => (String(value).replace(/[^\d-]/g, '') || '');
 }
 
 export default new FormatUtils();
