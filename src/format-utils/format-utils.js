@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 import {
+  DEFAULT_CURRENCY,
   FXRATE_DECIMALS,
   SKIPPED_DATE_FORMAT,
 } from './format-utils.constants';
@@ -15,7 +16,7 @@ class FormatUtils {
    */
   getCurrencyDecimals = (currency) => {
     const numberOptions = {
-      currency,
+      currency: currency || DEFAULT_CURRENCY,
       style: 'currency',
       currencyDisplay: 'code',
       useGrouping: false,

@@ -6,6 +6,7 @@ import FormatUtils from '../../src/format-utils/format-utils';
 describe('Format utils', function describe() {
   it('should function correctly', function it() {
     expect(FormatUtils.getCurrencyDecimals('EUR')).to.eql(2);
+    expect(FormatUtils.getCurrencyDecimals(null)).to.eql(2);
     expect(FormatUtils.getFXRateDecimals(1.11)).to.eql(6);
     expect(FormatUtils.formatCurrencyAmount(1, 'EUR')).to.eql('1.00');
     expect(FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')).to.eql('01.01.2017');
