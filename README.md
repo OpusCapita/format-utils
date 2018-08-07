@@ -63,7 +63,7 @@ import FormatUtils from '@opuscapita/format-utils';
 export default function FormatUtilsExamples() {
   return (
     <p>
-      FormatUtils.formatCurrencyAmount(432432.23423, &#123; currency: 'EUR' &#125;) = {FormatUtils.formatCurrencyAmount(432432.23423, { currency: 'EUR' })}
+      FormatUtils.formatCurrencyAmount(432432.23423, { currency: 'EUR' }) = {FormatUtils.formatCurrencyAmount(432432.23423, { currency: 'EUR' })}
     </p>
     <p>
       FormatUtils.formatFloatToFixedDecimals(1234.12345, 2) = {FormatUtils.formatFloatToFixedDecimals(1234.12345, 2)}
