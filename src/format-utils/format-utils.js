@@ -29,7 +29,7 @@ export const getCurrencyDecimals = (currency) => {
     }
     return test.length - foundSeparator - 1;
   } catch (e) {
-    console.error(e);
+    console.error(e); // eslint-disable-line
     return 2;
   }
 };
@@ -78,7 +78,7 @@ export const getLocalDateTime = (timestamp) => {
  *  output: '5.000,00'.
  */
 export const formatCurrencyAmount = (amount, options = {}) => {
-  const decimals = options.decimals || this.getCurrencyDecimals(options.currency);
+  const decimals = options.decimals || getCurrencyDecimals(options.currency);
   const isTs = (typeof options.thousandSeparator === 'string' && options.thousandSeparator.length);
   const isDs = (typeof options.decimalSeparator === 'string' && options.decimalSeparator.length);
   const fixedNumber = Number(amount).toFixed(decimals);
@@ -162,4 +162,4 @@ export const formatFloatToFixedDecimals = (value, decimals) => {
  * Example of input: 1.11. Example of output: '1.110000'.
  * Example of input: 1.12345678. Example of output: '1.12345678'.
  */
-export const formatFXRate = value => Number(value).toFixed(this.getFXRateDecimals(value));
+export const formatFXRate = value => Number(value).toFixed(getFXRateDecimals(value));
