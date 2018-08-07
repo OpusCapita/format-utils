@@ -33,10 +33,12 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
 
 #### formatCurrencyAmount option object
-| Option key          | Description          | Value             |
-| ------------------- | -------------------- | ----------------- |
-| thousandSeparator   | Thousand separator   | string (optional) |
-| decimalSeparator    | Decimal separator    | string            |
+| Option key          | Value             | Default | Description                                     |
+| ------------------- | ----------------- | ------- | ----------------------------------------------- |
+| currency            | string (optional) |         | Currency code to get number of decimals from    |
+| decimals            | string (optional) |       2 | Number of decimals, overrides currency decimals |
+| thousandSeparator   | string (optional) |         | Thousand separator                              |
+| decimalSeparator    | string (optional) |     '.' | Decimal separator                               |
 
 ### Code example
 #### Import only the parts you need
