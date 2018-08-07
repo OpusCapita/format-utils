@@ -26,22 +26,46 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | getCurrencyDecimals      | Get a number of decimal digits for a currency   | currency code :: string                 | decimals :: number |
 | getFXRateDecimals        | Get a number of decimal digits for a FX rate    | FX rate :: [number, string]             | decimals :: number |
 | getLocalDateTime         | Get local date and time from ISO 8601 timestamp | UTC timestamp :: string                 | timestamp :: date  |
-| formatCurrencyAmount     | Format amount according to its currency         | amount :: [number, string], currency code :: string | amount :: string |
+| formatCurrencyAmount     | Format amount according to its currency         | amount :: [number, string], options :: object (optional) | amount :: string |
 | formatDate               | Format date to a chosen format                  | date :: string, date format :: string   | date :: string     |
 | formatDateToISO          | Format localized date string to ISO timestamp   | date :: string, date format :: string (optional), sign of strict date format :: boolean (optional), default value :: string (optional), default date format :: string (optional) | ISO date :: string |
 | formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
 | formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
 
+#### formatCurrencyAmount option object
+| Option key          | Description          | Value             |
+| ------------------- | -------------------- | ----------------- |
+| thousandSeparator   | Thousand separator   | string (optional) |
+| decimalSeparator    | Decimal separator    | string            |
+
 ### Code example
+#### Import only the parts you need
 ```jsx
 import React from 'react';
-import { FormatUtils } from '../../src/index';
+import { getCurrencyDecimals } from '@opuscapita/format-utils';
 
 export default function FormatUtilsExamples() {
   return (
-    <div>
-      getCurrencyDecimals(&apos;EUR&apos;) = {FormatUtils.getCurrencyDecimals('EUR')}
-    </div>
+    <p>
+      getCurrencyDecimals('EUR') = {getCurrencyDecimals('EUR')}
+    </p>
   );
-}    
+}
+```
+
+### Import whole utils library
+```jsx
+import React from 'react';
+import FormatUtils from '@opuscapita/format-utils';
+
+export default function FormatUtilsExamples() {
+  return (
+    <p>
+      FormatUtils.formatCurrencyAmount(432432.23423, &#123; currency: 'EUR' &#125;) = {FormatUtils.formatCurrencyAmount(432432.23423, { currency: 'EUR' })}
+    </p>
+    <p>
+      FormatUtils.formatFloatToFixedDecimals(1234.12345, 2) = {FormatUtils.formatFloatToFixedDecimals(1234.12345, 2)}
+    </p>
+  );
+}
 ```

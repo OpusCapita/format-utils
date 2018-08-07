@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormatUtils } from '../../src/index';
+import FormatUtils from '../../src/index';
 
 export default function FormatUtilsExamples() {
   return (
@@ -16,7 +16,10 @@ export default function FormatUtilsExamples() {
           getLocalDateTime(&apos;2017-01-01T00:00:00&apos;) = {String(FormatUtils.getLocalDateTime('2017-01-01T00:00:00'))}
         </li>
         <li>
-          formatCurrencyAmount(1, &apos;EUR&apos;) = {FormatUtils.formatCurrencyAmount(1, 'EUR')}
+          formatCurrencyAmount(1, &#123; currency: &apos;EUR&apos; &#125;) = {FormatUtils.formatCurrencyAmount(1, { currency: 'EUR' })}
+        </li>
+        <li>
+          formatCurrencyAmount(5000, &#123; currency: &apos;EUR&apos;, thousandSeparator: &apos;.&apos;, decimalSeparator: &apos;,&apos; &#125;) = {FormatUtils.formatCurrencyAmount(5000, { currency: 'EUR', thousandSeparator: '.', decimalSeparator: ',' })}
         </li>
         <li>
           formatDate(&apos;2017-01-01T00:00:00.000Z&apos;, &apos;DD.MM.YYYY&apos;) = {FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')}
