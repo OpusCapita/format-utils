@@ -3,6 +3,11 @@
 
 ## next
 
+## 2.1.0
+* Add `formatNumber` function to format number with separators and decimals
+* Fix `formatCurrencyAmount` to allow 0 decimals
+* Upgrade all dependencies along with Webpack 4 and Babel 8
+
 ## 2.0.0
 * Change exports so that functions can be imported separately or whole library
 * Change formatCurrencyAmount optional parameters to object

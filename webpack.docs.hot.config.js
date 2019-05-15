@@ -29,7 +29,4 @@ const hotConfig = {
   },
 };
 
-const mergedConfig = merge(devConfig, hotConfig);
-mergedConfig.entry.unshift('react-hot-loader/patch');
-
-module.exports = mergedConfig;
+module.exports = merge(devConfig, hotConfig);

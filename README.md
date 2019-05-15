@@ -31,12 +31,20 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | formatDateToISO          | Format localized date string to ISO timestamp   | date :: string, date format :: string (optional), sign of strict date format :: boolean (optional), default value :: string (optional), default date format :: string (optional) | ISO date :: string |
 | formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
 | formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
+| formatNumber             | Format number with separators and decimals      | value :: [number, float, string], options :: object (optional) | amount :: string |
 
 #### formatCurrencyAmount option object
 | Option key          | Value             | Default | Description                                     |
 | ------------------- | ----------------- | ------- | ----------------------------------------------- |
 | currency            | string (optional) |         | Currency code to get number of decimals from    |
 | decimals            | string (optional) |       2 | Number of decimals, overrides currency decimals |
+| thousandSeparator   | string (optional) |         | Thousand separator                              |
+| decimalSeparator    | string (optional) |     '.' | Decimal separator                               |
+
+#### formatNumber option object
+| Option key          | Value             | Default | Description                                     |
+| ------------------- | ----------------- | ------- | ----------------------------------------------- |
+| decimals            | string (optional) |       0 | Number of decimals                              |
 | thousandSeparator   | string (optional) |         | Thousand separator                              |
 | decimalSeparator    | string (optional) |     '.' | Decimal separator                               |
 

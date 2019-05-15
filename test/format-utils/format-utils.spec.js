@@ -11,7 +11,7 @@ describe('Format utils', function describe() {
     expect(FormatUtils.formatCurrencyAmount(1, { currency: 'EUR' })).to.eql('1.00');
     expect(FormatUtils.formatCurrencyAmount(8888.3452, { currency: 'EUR', thousandSeparator: ',', decimalSeparator: '.' })).to.eql('8,888.35');
     expect(FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')).to.eql('01.01.2017');
-    expect(FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')).to.eql('2018-01-01T00:00:00.000Z');
+    expect(FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')).to.eql('2019-01-01T00:00:00.000Z');
     expect(FormatUtils.formatFloatToFixedDecimals(1.11, 3)).to.eql('1.110');
     expect(FormatUtils.formatFXRate(1)).to.eql('1.000000');
   });

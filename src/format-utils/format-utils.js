@@ -1,10 +1,6 @@
 import moment from 'moment';
 
-import {
-  DEFAULT_CURRENCY,
-  FXRATE_DECIMALS,
-  SKIPPED_DATE_FORMAT,
-} from './format-utils.constants';
+import { DEFAULT_CURRENCY, FXRATE_DECIMALS, SKIPPED_DATE_FORMAT } from './format-utils.constants';
 
 /**
  * Get a number of decimal digits for a currency.
@@ -22,7 +18,9 @@ export const getCurrencyDecimals = (currency) => {
     useGrouping: false,
   };
   try {
-    const test = new Intl.NumberFormat('en-GB', numberOptions).format(1.111111).replace(/[^\d.,]/g, '');
+    const test = new Intl.NumberFormat('en-GB', numberOptions)
+      .format(1.111111)
+      .replace(/[^\d.,]/g, '');
     const foundSeparator = test.search(/[.,]/g);
     if (foundSeparator === -1) {
       return 0;
@@ -45,8 +43,9 @@ export const getFXRateDecimals = (value) => {
   const valueString = String(parseFloat(String(value)));
   const decimalSeparator = valueString.indexOf('.');
   const decimalNumber = valueString.length - decimalSeparator - 1;
-  return (decimalSeparator === -1 || decimalNumber <= FXRATE_DECIMALS) ?
-    FXRATE_DECIMALS : decimalNumber;
+  return decimalSeparator === -1 || decimalNumber <= FXRATE_DECIMALS
+    ? FXRATE_DECIMALS
+    : decimalNumber;
 };
 
 /**
@@ -55,11 +54,49 @@ export const getFXRateDecimals = (value) => {
  * Output: timestamp :: date.
  */
 export const getLocalDateTime = (timestamp) => {
-  const isoTimestamp = (timestamp !== null && timestamp.slice(-1) !== 'Z') ?
-    `${timestamp}Z` : timestamp;
+  const isoTimestamp = timestamp !== null && timestamp.slice(-1) !== 'Z'
+    ? `${timestamp}Z`
+    : timestamp;
   const localTime = new Date(isoTimestamp) - new Date(timestamp).getTimezoneOffset();
   const timeToConvert = localTime >= 0 ? localTime : 0;
   return new Date(timeToConvert);
+};
+
+/**
+ * Format number with separators and number of decimals.
+ * Input: value :: [number, float, string]
+ * options :: object (optional)
+ *    decimals :: string (optional)           // overrides number of decimals
+ *    thousandSeparator :: string (optional)  // defaults to none
+ *    decimalSeparator :: string (optional)   // defaults to '.'
+ * Output: amount :: string.
+ * Example of input: 1. Example of output: '1'.
+ * Example of input: 1.123, { decimals: 2 }. Example of output: '1.12'.
+ * Example of input:
+ *  5000, { decimals: 2, thousandSeparator: ',', decimalSeparator: '.' }
+ *  output: '5,000.00'.
+ */
+export const formatNumber = (value, options = {}) => {
+  const decimals = options.decimals || 0;
+  const isTs = typeof options.thousandSeparator === 'string' && options.thousandSeparator.length;
+  const isDs = typeof options.decimalSeparator === 'string' && options.decimalSeparator.length;
+  const fixedNumber = Number(value).toFixed(decimals);
+  if (isTs || isDs) {
+    if (decimals > 0) {
+      const split = fixedNumber.split('.');
+      if (isTs) {
+        split[0] = split[0].replace(/\B(?=(\d{3})+(?!\d))/g, options.thousandSeparator);
+      }
+      if (isDs) {
+        return split.join(options.decimalSeparator);
+      }
+      return split.join('.');
+    }
+    if (isTs) {
+      return fixedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, options.thousandSeparator);
+    }
+  }
+  return fixedNumber;
 };
 
 /**
@@ -75,28 +112,13 @@ export const getLocalDateTime = (timestamp) => {
  * Example of input: 1.123, 'JPY'. Example of output: '1'.
  * Example of input:
  *  5000, { currency: 'EUR', thousandSeparator: ',', decimalSeparator: '.' }
- *  output: '5.000,00'.
+ *  output: '5,000.00'.
  */
 export const formatCurrencyAmount = (amount, options = {}) => {
-  const decimals = options.decimals || getCurrencyDecimals(options.currency);
-  const isTs = (typeof options.thousandSeparator === 'string' && options.thousandSeparator.length);
-  const isDs = (typeof options.decimalSeparator === 'string' && options.decimalSeparator.length);
-  const fixedNumber = Number(amount).toFixed(decimals);
-  if (isTs || isDs) {
-    if (decimals > 0) {
-      const split = fixedNumber.split('.');
-      if (isTs) {
-        split[0] = split[0].replace(/\B(?=(\d{3})+(?!\d))/g, options.thousandSeparator);
-      }
-      if (isDs) {
-        return split.join(options.decimalSeparator);
-      }
-      return split.join('.');
-    } else if (isTs) {
-      return fixedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, options.thousandSeparator);
-    }
-  }
-  return fixedNumber;
+  const decimals = options.decimals === undefined
+    ? getCurrencyDecimals(options.currency)
+    : options.decimals;
+  return formatNumber(amount, { ...options, decimals });
 };
 
 /**
@@ -126,7 +148,13 @@ export const formatDate = (value, dateFormat) => {
  * Output: ISO timestamp :: string.
  * Example of input: '01.01', 'DD.MM.YYYY'. Example of output: '2017-01-01T00:00:00.000Z'.
  */
-export const formatDateToISO = (value, dateFormat = null, isStrict = false, defaultValue = '', defaultDateFormat = null) => {
+export const formatDateToISO = (
+  value,
+  dateFormat = null,
+  isStrict = false,
+  defaultValue = '',
+  defaultDateFormat = null,
+) => {
   if (isStrict && moment.utc(value, SKIPPED_DATE_FORMAT, isStrict).isValid()) {
     return value;
   }
@@ -150,7 +178,9 @@ export const formatDateToISO = (value, dateFormat = null, isStrict = false, defa
  */
 export const formatFloatToFixedDecimals = (value, decimals) => {
   /* eslint-disable no-restricted-globals */
-  let floatValue = String(value).replace(/[^\d.,-]/g, '').replace(',', '.');
+  let floatValue = String(value)
+    .replace(/[^\d.,-]/g, '')
+    .replace(',', '.');
   floatValue = isNaN(Number(floatValue)) ? 0 : Number(floatValue);
   return floatValue.toFixed(decimals);
 };
