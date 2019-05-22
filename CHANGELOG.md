@@ -2,6 +2,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## next
+* A couple of tweaks to the `formatCurrencyAmount` function
 
 ## 2.1.0
 * Add `formatNumber` function to format number with separators and decimals

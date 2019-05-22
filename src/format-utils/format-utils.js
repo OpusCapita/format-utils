@@ -115,10 +115,17 @@ export const formatNumber = (value, options = {}) => {
  *  output: '5,000.00'.
  */
 export const formatCurrencyAmount = (amount, options = {}) => {
+  let amountStr = String(amount).replace(/\s/g, '');
+
+  // Replaces all commas with dots, if comma isn't used as a thousand separator
+  if (options.thousandSeparator !== ',') {
+    amountStr = amountStr.replace(',', '.');
+  }
+
   const decimals = options.decimals === undefined
     ? getCurrencyDecimals(options.currency)
     : options.decimals;
-  return formatNumber(amount, { ...options, decimals });
+  return formatNumber(parseFloat(amountStr), { ...options, decimals });
 };
 
 /**
