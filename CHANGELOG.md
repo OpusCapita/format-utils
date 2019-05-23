@@ -1,7 +1,10 @@
 # Changelog
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## next
+## <next>
+* Bug fix in `formatCurrencyAmount` function
+
+## 2.1.1
 * Enhanced decimal/thousand separator handling in `formatCurrencyAmount` function
 
 ## 2.1.0
