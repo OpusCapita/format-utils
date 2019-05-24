@@ -2,6 +2,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.1.2
 * Bug fix in `formatCurrencyAmount` function
 
 ## 2.1.1
