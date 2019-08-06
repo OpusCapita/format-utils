@@ -2,6 +2,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added multiplier support for currency formatter
 
 ## 2.1.2
 * Bug fix in `formatCurrencyAmount` function

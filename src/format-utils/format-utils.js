@@ -107,6 +107,7 @@ export const formatNumber = (value, options = {}) => {
  *    decimals :: string (optional)           // overrides number of decimals
  *    thousandSeparator :: string (optional)  // defaults to none
  *    decimalSeparator :: string (optional)   // defaults to '.'
+ *    multiplier :: number (optional)         // amount is multiplied by multiplier
  * Output: amount :: string.
  * Example of input: 1, 'EUR'. Example of output: '1.00'.
  * Example of input: 1.123, 'JPY'. Example of output: '1'.
@@ -120,11 +121,13 @@ export const formatCurrencyAmount = (amount, options = {}) => {
   // Strips all commas OR replaces all commas with dots, if comma isn't used as a thousand separator
   const replaceValue = (options.thousandSeparator !== ',') ? '.' : '';
   amountStr = amountStr.replace(/,/g, replaceValue);
+  const { multiplier } = options;
+  const amountFloat = multiplier ? multiplier * parseFloat(amountStr) : parseFloat(amountStr);
 
   const decimals = options.decimals === undefined
     ? getCurrencyDecimals(options.currency)
     : options.decimals;
-  return formatNumber(parseFloat(amountStr), { ...options, decimals });
+  return formatNumber(amountFloat, { ...options, decimals });
 };
 
 /**
