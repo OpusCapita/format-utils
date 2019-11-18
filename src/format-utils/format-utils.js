@@ -127,7 +127,9 @@ export const formatCurrencyAmount = (amount, options = {}) => {
   const decimals = options.decimals === undefined
     ? getCurrencyDecimals(options.currency)
     : options.decimals;
-  return formatNumber(amountFloat, { ...options, decimals });
+  return Number.isNaN(amountFloat)
+    ? amountFloat
+    : formatNumber(amountFloat, { ...options, decimals });
 };
 
 /**
