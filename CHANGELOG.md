@@ -2,6 +2,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fixed `formatCurrencyAmount` returns NaN instead of 'NaN'
 
 ## 2.2.0
 * Added multiplier support for currency formatter
