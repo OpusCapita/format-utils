@@ -2,6 +2,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.2.1
 * Fixed `formatCurrencyAmount` returns NaN instead of 'NaN'
 
 ## 2.2.0
