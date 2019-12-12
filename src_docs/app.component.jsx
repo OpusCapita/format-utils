@@ -1,6 +1,6 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
 import FormatUtilsExamples from './format-utils-examples/format-utils-examples';
 
 import './app.component.scss';

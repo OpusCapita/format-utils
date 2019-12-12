@@ -27,7 +27,7 @@ export const getCurrencyDecimals = (currency) => {
     }
     return test.length - foundSeparator - 1;
   } catch (e) {
-    console.error(e); // eslint-disable-line
+    // In any error case, return 2 decimals.
     return 2;
   }
 };

@@ -3,6 +3,9 @@
 
 ## <next>
 
+## 2.2.2
+* Suppress invalid currency code console error output when getting number of decimals
+
 ## 2.2.1
 * Fixed `formatCurrencyAmount` returns NaN instead of 'NaN'
 
