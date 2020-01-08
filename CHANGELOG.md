@@ -3,6 +3,9 @@
 
 ## <next>
 
+## 2.2.3
+* Hard code some currency decimal counts that were wrong in Chrome
+
 ## 2.2.2
 * Suppress invalid currency code console error output when getting number of decimals
 

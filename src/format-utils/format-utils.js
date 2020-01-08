@@ -2,6 +2,11 @@ import moment from 'moment';
 
 import { DEFAULT_CURRENCY, FXRATE_DECIMALS, SKIPPED_DATE_FORMAT } from './format-utils.constants';
 
+// Hard coded currencies that has two decimal places
+// Fix bug in Chrome that fails to count decimals for these currencies
+const DEC_COUNT_2 = ['AFN', 'ALL', 'IRR', 'KPW', 'LAK', 'LBP', 'MGA', 'MMK', 'RSD', 'SLL', 'SOS', 'SYP']; // eslint-disable-line
+const DEC_COUNT_3 = ['IQD'];
+
 /**
  * Get a number of decimal digits for a currency.
  * Input: currency code :: string.
@@ -17,6 +22,13 @@ export const getCurrencyDecimals = (currency) => {
     currencyDisplay: 'code',
     useGrouping: false,
   };
+  // Hard codes decimal counts
+  if (DEC_COUNT_2.includes(currency)) {
+    return 2;
+  }
+  if (DEC_COUNT_3.includes(currency)) {
+    return 3;
+  }
   try {
     const test = new Intl.NumberFormat('en-GB', numberOptions)
       .format(1.111111)
@@ -203,4 +215,4 @@ export const formatFloatToFixedDecimals = (value, decimals) => {
  * Example of input: 1.11. Example of output: '1.110000'.
  * Example of input: 1.12345678. Example of output: '1.12345678'.
  */
-export const formatFXRate = value => Number(value).toFixed(getFXRateDecimals(value));
+export const formatFXRate = (value) => Number(value).toFixed(getFXRateDecimals(value));
