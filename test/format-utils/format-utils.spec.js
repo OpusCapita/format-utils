@@ -28,6 +28,42 @@ describe('Format utils', function describe() {
       decimalSeparator: '.',
       multiplier: 0.001,
     })).to.eql('-1,234.57');
+    expect(FormatUtils.formatCurrencyAmount('-1.000', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 1,
+    })).to.eql('-1.000,00');
+    expect(FormatUtils.formatCurrencyAmount('-9.999,989', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 1,
+    })).to.eql('-9.999,99');
+    expect(FormatUtils.formatCurrencyAmount('-2.000,00', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 1,
+    })).to.eql('-2.000,00');
+    expect(FormatUtils.formatCurrencyAmount('1.234.567,89', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 1,
+    })).to.eql('1.234.567,89');
+    expect(FormatUtils.formatCurrencyAmount('1.234.567,89', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 0.001,
+    })).to.eql('1.234,57');
+    expect(FormatUtils.formatCurrencyAmount('1.234.567,89', {
+      currency: 'EUR',
+      thousandSeparator: '.',
+      decimalSeparator: ',',
+      multiplier: 0.000001,
+    })).to.eql('1,23');
     expect(FormatUtils.formatDate('2017-01-01T00:00:00.000Z', 'DD.MM.YYYY')).to.eql('01.01.2017');
     const year = new Date().getFullYear();
     expect(FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')).to.eql(`${year}-01-01T00:00:00.000Z`);

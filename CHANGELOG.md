@@ -2,6 +2,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Bug fix in `formatCurrencyAmount` function: if region is for example Dansk or German and thousand separator is dot, first instance of thousand separator in the input is twisted to decimal separator.
 
 ## 2.2.3
 * Hard code some currency decimal counts that were wrong in Chrome
