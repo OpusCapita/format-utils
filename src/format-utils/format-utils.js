@@ -130,14 +130,9 @@ export const formatNumber = (value, options = {}) => {
 export const formatCurrencyAmount = (amount, options = {}) => {
   let amountStr = String(amount).replace(/\s/g, '');
 
-  // Strips all thousand separator
-  if (options.thousandSeparator) {
-    amountStr = amountStr.replace(new RegExp(`\\${options.thousandSeparator}`, 'g'), '');
-  }
-  // before number convertion decimal separator is replaced with proper one
-  if (options.decimalSeparator !== '.') {
-    amountStr = amountStr.replace(new RegExp(`\\${options.decimalSeparator}`, 'g'), '.');
-  }
+  // Strips all commas OR replaces all commas with dots, if comma isn't used as a thousand separator
+  const replaceValue = (options.thousandSeparator !== ',') ? '.' : '';
+  amountStr = amountStr.replace(/,/g, replaceValue);
 
   const { multiplier } = options;
   const amountFloat = multiplier ? multiplier * parseFloat(amountStr) : parseFloat(amountStr);
