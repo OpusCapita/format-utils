@@ -33,5 +33,6 @@ describe('Format utils', function describe() {
     expect(FormatUtils.formatDateToISO('01.01', 'DD.MM.YYYY')).to.eql(`${year}-01-01T00:00:00.000Z`);
     expect(FormatUtils.formatFloatToFixedDecimals(1.11, 3)).to.eql('1.110');
     expect(FormatUtils.formatFXRate(1)).to.eql('1.000000');
+    expect(FormatUtils.escapeSpecialCharacters('(test)')).to.eql('\\(test\\)');
   });
 });

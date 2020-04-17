@@ -32,6 +32,7 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | formatFloatToFixedDecimals | Format an input to a float with fixed number of decimals | value to format :: [number, string], decimals :: number | formatted value :: string |
 | formatFXRate             | Format FX rate                                  | FX rate :: [string, number]             | FX rate :: string  |
 | formatNumber             | Format number with separators and decimals      | value :: [number, float, string], options :: object (optional) | amount :: string |
+| escapeSpecialCharacters | Format string containing special characters by escaping them | string | string |
 
 #### formatCurrencyAmount option object
 | Option key          | Value             | Default | Description                                     |
