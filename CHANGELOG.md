@@ -2,6 +2,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* added escapeSpecialCharacters function. Escape special characters from the string.
 
 ## 2.2.5
 * Reverted previous change. Because `formatCurrencyAmount` input must be always either number or number string.

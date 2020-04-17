@@ -217,3 +217,12 @@ export const formatFloatToFixedDecimals = (value, decimals) => {
  * Example of input: 1.12345678. Example of output: '1.12345678'.
  */
 export const formatFXRate = (value) => Number(value).toFixed(getFXRateDecimals(value));
+
+/**
+ * Escape special characters from string
+ * Input: string
+ * Output: escapedString :: string
+ * Example of input: '(reboot)'
+ * Example of output: '\(reboot\)'
+ */
+export const escapeSpecialCharacters = (str) => str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
