@@ -2,6 +2,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.2.6
 * added escapeSpecialCharacters function. Escape special characters from the string.
 
 ## 2.2.5
